@@ -43,6 +43,22 @@ export default class TMDb {
 		}
 	}
 
+	public find = (
+		external_id: string,
+		params: {
+			language?: Types.Language;
+			external_source:
+				| "imdb_id"
+				| "freebase_mid"
+				| "freebase_id"
+				| "tvdb_id"
+				| "tvrage_id"
+				| "facebook_id"
+				| "twitter_id"
+				| "instagram_id";
+		}
+	) => this.request<Types.Find>(`/find/${external_id}`, params);
+
 	private async request<responseType>(endpoint: string, params?: Types.RequestParams) {
 		let headers: { Accept: string; Authorization?: string } = { Accept: "application/json" };
 		let append_to_response: string | undefined;
