@@ -1,5 +1,11 @@
 import type * as Types from "./types";
 
+type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void
+	? I
+	: never;
+
+type Params = { [key: string]: any };
+
 export default class TMDb {
 	private apiKey?: string;
 	private bearerToken?: string;
@@ -85,7 +91,7 @@ export default class TMDb {
 			append_to_response?: Key[];
 		}
 	) =>
-		this.request<Types.Movie & Types.UnionToIntersection<ATR[Key]>>(
+		this.request<Types.Movie & UnionToIntersection<ATR[Key]>>(
 			`/movie/${movie_id}`,
 			params as Types.RequestParams
 		);
@@ -336,6 +342,16 @@ export default class TMDb {
 		};
 	}
 
-	private buildEndpoint = (endpoint: string, params: { [key: string]: any }) =>
-		`${this.baseUrl}${endpoint}?${new URLSearchParams(params).toString()}`;
+	private buildEndpoint = (endpoint: string, params: Params) =>
+		`${this.baseUrl}${endpoint}?${new URLSearchParams(
+			this.filterUrlParams(params)
+		).toString()}`;
+
+	private filterUrlParams = (params: Params) =>
+		Object.keys(params).reduce((prms: Params, key) => {
+			if (params[key] !== undefined) {
+				prms[key] = params[key];
+			}
+			return prms;
+		}, {});
 }
