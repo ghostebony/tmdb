@@ -224,6 +224,70 @@ export default class TMDb {
 		region?: Types.Region;
 	}) => this.request<Types.MovieUpcoming>("/movie/upcoming", params);
 
+	public searchCompany = (
+		query: string,
+		params?: {
+			page?: number;
+		}
+	) => this.request<Types.SearchCompany>("/search/company", { query, ...params });
+
+	public searchCollection = (
+		query: string,
+		params?: {
+			language?: Types.Language;
+			page?: number;
+		}
+	) => this.request<Types.SearchCollection>("/search/collection", { query, ...params });
+
+	public searchKeyword = (
+		query: string,
+		params?: {
+			page?: number;
+		}
+	) => this.request<Types.SearchKeyword>("/search/keyword", { query, ...params });
+
+	public searchMovie = (
+		query: string,
+		params?: {
+			language?: Types.Language;
+			page?: number;
+			include_adult?: boolean;
+			region?: Types.Region;
+			year?: number;
+			primary_release_year?: number;
+		}
+	) => this.request<Types.SearchMovie>("/search/movie", { query, ...params });
+
+	public searchMulti = (
+		query: string,
+		params?: {
+			language?: Types.Language;
+			page?: number;
+			include_adult?: boolean;
+			region?: Types.Region;
+		}
+	) => this.request<Types.SearchMulti>("/search/multi", { query, ...params });
+
+	public searchPerson = (
+		query: string,
+		params?: {
+			language?: Types.Language;
+			page?: number;
+			include_adult?: boolean;
+			region?: Types.Region;
+		}
+	) => this.request<Types.SearchPerson>("/search/person", { query, ...params });
+
+	public searchTv = (
+		query: string,
+		params?: {
+			language?: Types.Language;
+			page?: number;
+			include_adult?: boolean;
+			first_air_date_year?: number;
+		}
+	) => this.request<Types.SearchTv>("/search/tv", { query, ...params });
+
 	private async request<responseType>(endpoint: string, params?: Types.RequestParams) {
 		let headers: { Accept: string; Authorization?: string } = { Accept: "application/json" };
 		let append_to_response: string | undefined;
