@@ -59,6 +59,171 @@ export default class TMDb {
 		}
 	) => this.request<Types.Find>(`/find/${external_id}`, params);
 
+	public movie = <
+		ATR extends {
+			account_states: Types.MovieAccountStates;
+			alternative_titles: Types.MovieAlternativeTitles;
+			changes: Types.MovieChanges;
+			credits: Types.MovieCredits;
+			external_ids: Types.MovieExternalIds;
+			images: Types.MovieImages;
+			keywords: Types.MovieKeywords;
+			lists: Types.MovieLists;
+			recommendations: Types.MovieRecommendations;
+			release_dates: Types.MovieReleaseDates;
+			reviews: Types.MovieReviews;
+			similar: Types.MovieSimilar;
+			translations: Types.MovieTranslations;
+			videos: Types.MovieVideos;
+			"watch/providers": Types.MovieWatchProviders;
+		},
+		Key extends keyof ATR
+	>(
+		movie_id: number,
+		params?: {
+			language?: Types.Language;
+			append_to_response?: Key[];
+		}
+	) =>
+		this.request<Types.Movie & Types.UnionToIntersection<ATR[Key]>>(
+			`/movie/${movie_id}`,
+			params as Types.RequestParams
+		);
+
+	public movieAccountStates = (
+		movie_id: number,
+		params: {
+			session_id: string;
+			guest_session_id?: string;
+		}
+	) =>
+		this.request<Types.MovieAccountStates["account_states"]>(
+			`/movie/${movie_id}/account_states`,
+			params
+		);
+
+	public movieAlternativeTitles = (
+		movie_id: number,
+		params?: {
+			country?: string;
+		}
+	) =>
+		this.request<Types.MovieAlternativeTitles["alternative_titles"]>(
+			`/movie/${movie_id}/alternative_titles`,
+			params
+		);
+
+	public movieChanges = (
+		movie_id: number,
+		params?: {
+			start_date?: string;
+			end_date?: string;
+			page?: number;
+		}
+	) => this.request<Types.MovieChanges["changes"]>(`/movie/${movie_id}/changes`, params);
+
+	public movieCredits = (
+		movie_id: number,
+		params?: {
+			language?: Types.Language;
+		}
+	) => this.request<Types.MovieCredits["credits"]>(`/movie/${movie_id}/credits`, params);
+
+	public movieExternalIds = (movie_id: number) =>
+		this.request<Types.MovieExternalIds["external_ids"]>(`/movie/${movie_id}/external_ids`);
+
+	public movieImages = (
+		movie_id: number,
+		params?: {
+			language?: Types.Language;
+			include_image_language?: Types.Language;
+		}
+	) => this.request<Types.MovieImages["images"]>(`/movie/${movie_id}/images`, params);
+
+	public movieKeywords = (movie_id: number) =>
+		this.request<Types.MovieKeywords["keywords"]>(`/movie/${movie_id}/keywords`);
+
+	public movieLists = (
+		movie_id: number,
+		params?: {
+			language?: Types.Language;
+			page?: number;
+		}
+	) => this.request<Types.MovieLists["lists"]>(`/movie/${movie_id}/lists`, params);
+
+	public movieRecommendations = (
+		movie_id: number,
+		params?: {
+			language?: Types.Language;
+			page?: number;
+		}
+	) =>
+		this.request<Types.MovieRecommendations["recommendations"]>(
+			`/movie/${movie_id}/recommendations`,
+			params
+		);
+
+	public movieReleaseDates = (movie_id: number) =>
+		this.request<Types.MovieReleaseDates["release_dates"]>(`/movie/${movie_id}/release_dates`);
+
+	public movieReviews = (
+		movie_id: number,
+		params?: {
+			language?: Types.Language;
+			page?: number;
+		}
+	) => this.request<Types.MovieReviews["reviews"]>(`/movie/${movie_id}/reviews`, params);
+
+	public movieSimilar = (
+		movie_id: number,
+		params?: {
+			language?: Types.Language;
+			page?: number;
+		}
+	) => this.request<Types.MovieSimilar["similar"]>(`/movie/${movie_id}/similar`, params);
+
+	public movieTranslations = (movie_id: number) =>
+		this.request<Types.MovieTranslations["translations"]>(`/movie/${movie_id}/translations`);
+
+	public movieVideos = (
+		movie_id: number,
+		params?: {
+			language?: Types.Language;
+		}
+	) => this.request<Types.MovieVideos["videos"]>(`/movie/${movie_id}/videos`, params);
+
+	public movieWatchProviders = (movie_id: number) =>
+		this.request<Types.MovieWatchProviders["watch_providers"]>(
+			`/movie/${movie_id}/watch/providers`
+		);
+
+	public movieLatest = (params?: { language?: string }) =>
+		this.request<Types.MovieLatest>("/movie/latest", params);
+
+	public movieNowPlaying = (params?: {
+		language?: Types.Language;
+		page?: number;
+		region?: Types.Region;
+	}) => this.request<Types.MovieNowPlaying>("/movie/now_playing", params);
+
+	public moviePopular = (params?: {
+		language?: Types.Language;
+		page?: number;
+		region?: Types.Region;
+	}) => this.request<Types.MoviePopular>("/movie/popular", params);
+
+	public movieTopRated = (params?: {
+		language?: Types.Language;
+		page?: number;
+		region?: Types.Region;
+	}) => this.request<Types.MovieTopRated>("/movie/top_rated", params);
+
+	public movieUpcoming = (params?: {
+		language?: Types.Language;
+		page?: number;
+		region?: Types.Region;
+	}) => this.request<Types.MovieUpcoming>("/movie/upcoming", params);
+
 	private async request<responseType>(endpoint: string, params?: Types.RequestParams) {
 		let headers: { Accept: string; Authorization?: string } = { Accept: "application/json" };
 		let append_to_response: string | undefined;
