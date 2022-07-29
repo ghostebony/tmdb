@@ -697,6 +697,107 @@ export default class TMDb {
 			params
 		);
 
+	public tvSeasonEpisode = <
+		ATR extends {
+			account_states: Types.TvSeasonEpisodeAccountStates;
+			changes: Types.TvSeasonEpisodeChanges;
+			credits: Types.TvSeasonEpisodeCredits;
+			external_ids: Types.TvSeasonEpisodeExternalIds;
+			images: Types.TvSeasonEpisodeImages;
+			translations: Types.TvSeasonEpisodeTranslations;
+			videos: Types.TvSeasonEpisodeVideos;
+		},
+		Key extends keyof ATR
+	>(
+		tv_id: number,
+		season_number: number,
+		episode_number: number,
+		params?: {
+			language?: Types.Language;
+			append_to_response?: Key[];
+		}
+	) =>
+		this.request<Types.TvSeasonEpisode & UnionToIntersection<ATR[Key]>>(
+			`/tv/${tv_id}/season/${season_number}/episode/${episode_number}`,
+			params as Types.RequestParams
+		);
+
+	public tvSeasonEpisodeAccountStates = (
+		tv_id: number,
+		season_number: number,
+		episode_number: number,
+		params?: {
+			guest_session_id?: string;
+			session_id?: string;
+		}
+	) =>
+		this.request<Types.TvSeasonEpisodeAccountStates["account_states"]>(
+			`/tv/${tv_id}/season/${season_number}/episode/${episode_number}/account_states`,
+			params
+		);
+
+	public tvSeasonEpisodeChanges = (
+		episode_id: number,
+		params?: {
+			page?: number;
+			start_date?: string;
+			end_date?: string;
+		}
+	) =>
+		this.request<Types.TvSeasonEpisodeChanges["changes"]>(
+			`/tv/episode/${episode_id}/changes`,
+			params
+		);
+
+	public tvSeasonEpisodeCredits = (
+		tv_id: number,
+		season_number: number,
+		episode_number: number,
+		params?: {
+			language?: Types.Language;
+		}
+	) =>
+		this.request<Types.TvSeasonEpisodeCredits["credits"]>(
+			`/tv/${tv_id}/season/${season_number}/episode/${episode_number}/credits`,
+			params
+		);
+
+	public tvSeasonEpisodeExternalIds = (
+		tv_id: number,
+		season_number: number,
+		episode_number: number
+	) =>
+		this.request<Types.TvSeasonEpisodeExternalIds["external_ids"]>(
+			`/tv/${tv_id}/season/${season_number}/episode/${episode_number}/external_ids`
+		);
+
+	public tvSeasonEpisodeImages = (tv_id: number, season_number: number, episode_number: number) =>
+		this.request<Types.TvSeasonEpisodeImages["images"]>(
+			`/tv/${tv_id}/season/${season_number}/episode/${episode_number}/images`
+		);
+
+	public tvSeasonEpisodeTranslations = (
+		tv_id: number,
+		season_number: number,
+		episode_number: number
+	) =>
+		this.request<Types.TvSeasonEpisodeTranslations["translations"]>(
+			`/tv/${tv_id}/season/${season_number}/episode/${episode_number}/translations`
+		);
+
+	public tvSeasonEpisodeVideos = (
+		tv_id: number,
+		season_number: number,
+		episode_number: number,
+		params?: {
+			language?: Types.Language;
+		}
+	) =>
+		this.request<Types.TvSeasonEpisodeVideos["videos"]>(
+			`/tv/${tv_id}/season/${season_number}/episode/${episode_number}/videos`,
+			params
+		);
+
 	private async request<responseType>(endpoint: string, params?: Types.RequestParams) {
 		let headers: { Accept: string; Authorization?: string } = { Accept: "application/json" };
 		let append_to_response: string | undefined;

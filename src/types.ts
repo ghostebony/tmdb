@@ -1438,3 +1438,161 @@ export type TvSeasonVideos = {
 export type TvSeasonTvSeasonEpisode = {
 	[episode: `episode/${number}`]: TvSeasonEpisode;
 };
+
+/* ---------------------------- Tv Season Episode --------------------------- */
+
+export type TvSeasonEpisode = {
+	air_date: string;
+	crew: {
+		id: number;
+		credit_id: string;
+		name: string;
+		department: string;
+		job: string;
+		profile_path: string | null;
+	}[];
+	episode_number: number;
+	guest_stars: {
+		id: number;
+		name: string;
+		credit_id: string;
+		character: string;
+		order: number;
+		profile_path: string | null;
+	}[];
+	name: string;
+	overview: string;
+	id: number;
+	production_code: string | null;
+	season_number: number;
+	still_path: string | null;
+	vote_average: number;
+	vote_count: number;
+};
+
+export type TvSeasonEpisodeAccountStates = {
+	account_states: {
+		id: number;
+		rated: object | boolean;
+	};
+};
+
+export type TvSeasonEpisodeChanges = {
+	changes: {
+		changes: {
+			key: string;
+			items: {
+				id: string;
+				action: string;
+				time: string;
+				value: string;
+				iso_639_1: string;
+			}[];
+		}[];
+	};
+};
+
+export type TvSeasonEpisodeCredits = {
+	credits: {
+		cast: {
+			adult: boolean;
+			gender: number | null;
+			id: number;
+			known_for_department: string;
+			name: string;
+			original_name: string;
+			popularity: number;
+			profile_path: string | null;
+			character: string;
+			credit_id: string;
+			order: number;
+		}[];
+		crew: {
+			department: string;
+			job: string;
+			credit_id: string;
+			adult: boolean;
+			gender: number | null;
+			id: number;
+			known_for_department: string;
+			name: string;
+			original_name: string;
+			popularity: number;
+			profile_path: string | null;
+		}[];
+		guest_stars: {
+			character_name: string;
+			credit_id: string;
+			order: number;
+			adult: boolean;
+			gender: number | null;
+			id: number;
+			known_for_department: string;
+			name: string;
+			original_name: string;
+			popularity: number;
+			profile_path: string | null;
+		}[];
+		id: number;
+	};
+};
+
+export type TvSeasonEpisodeExternalIds = {
+	external_ids: {
+		imdb_id: string | null;
+		freebase_mid: string | null;
+		freebase_id: string | null;
+		tvdb_id: number | null;
+		tvrage_id: number | null;
+		id: number;
+	};
+};
+
+export type TvSeasonEpisodeImages = {
+	images: {
+		id: number;
+		stills: {
+			aspect_ratio: number;
+			file_path: string;
+			height: number;
+			iso_639_1: null | string;
+			vote_average: number | number;
+			vote_count: number;
+			width: number;
+		}[];
+	};
+};
+
+export type TvSeasonEpisodeTranslations = {
+	translations: {
+		id: number;
+		translations: {
+			iso_3166_1: string;
+			iso_639_1: string;
+			name: string;
+			english_name: string;
+			data: {
+				name: string;
+				overview: string;
+			};
+		}[];
+	};
+};
+
+export type TvSeasonEpisodeVideos = {
+	videos: {
+		id: number;
+		results: {
+			iso_639_1: string;
+			iso_3166_1: string;
+			name: string;
+			key: string;
+			published_at: string;
+			site: string;
+			size: number;
+			type: string;
+			official: boolean;
+			id: string;
+		}[];
+	};
+};
