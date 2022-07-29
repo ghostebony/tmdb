@@ -918,7 +918,7 @@ export type TvAggregateCredits = {
 			}[];
 			total_episode_count: number;
 			order: number;
-		};
+		}[];
 		crew: {
 			adult: boolean;
 			gender: number | null;
@@ -935,7 +935,7 @@ export type TvAggregateCredits = {
 			}[];
 			department: string;
 			total_episode_count: number;
-		};
+		}[];
 		id: number;
 	};
 };
@@ -988,7 +988,7 @@ export type TvCredits = {
 			character: string;
 			credit_id: string;
 			order: number;
-		};
+		}[];
 		crew: {
 			adult: boolean;
 			gender: number | null;
@@ -1001,7 +1001,7 @@ export type TvCredits = {
 			credit_id: string;
 			department: string;
 			job: string;
-		};
+		}[];
 		id: number;
 	};
 };
