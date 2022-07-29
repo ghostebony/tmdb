@@ -576,6 +576,127 @@ export default class TMDb {
 	public tvTopRated = (params: { language?: Types.Language; page?: number }) =>
 		this.request<Types.TvTopRated>(`/tv/top_rated`, params);
 
+	public tvSeason = <
+		ATR extends {
+			account_states: Types.TvSeasonAccountStates;
+			aggregate_credits: Types.TvSeasonAggregateCredits;
+			changes: Types.TvSeasonChanges;
+			credits: Types.TvSeasonCredits;
+			external_ids: Types.TvSeasonExternalIds;
+			images: Types.TvSeasonImages;
+			translations: Types.TvSeasonTranslations;
+			videos: Types.TvSeasonVideos;
+			[episode: `episode/${number}`]: Types.TvSeasonTvSeasonEpisode;
+		},
+		Key extends keyof ATR
+	>(
+		tv_id: number,
+		season_number: number,
+		params?: {
+			language?: Types.Language;
+			append_to_response?: Key[];
+		}
+	) =>
+		this.request<Types.TvSeason & UnionToIntersection<ATR[Key]>>(
+			`/tv/${tv_id}/season/${season_number}`,
+			params as Types.RequestParams
+		);
+
+	public tvSeasonAccountStates = (
+		tv_id: number,
+		season_number: number,
+		params: {
+			language?: Types.Language;
+			guest_session_id?: string;
+			session_id?: string;
+		}
+	) =>
+		this.request<Types.TvSeasonAccountStates["account_states"]>(
+			`/tv/${tv_id}/season/${season_number}/account_states`,
+			params
+		);
+
+	public tvSeasonAggregateCredits = (
+		tv_id: number,
+		season_number: number,
+		params: {
+			language?: Types.Language;
+		}
+	) =>
+		this.request<Types.TvSeasonAggregateCredits["aggregate_credits"]>(
+			`/tv/${tv_id}/season/${season_number}/aggregate_credits`,
+			params
+		);
+
+	public tvSeasonChanges = (
+		season_id: number,
+		params?: {
+			start_date?: string;
+			end_date?: string;
+			page?: number;
+		}
+	) => this.request<Types.TvSeasonChanges["changes"]>(`/tv/season/${season_id}/changes`, params);
+
+	public tvSeasonCredits = (
+		tv_id: number,
+		season_number: number,
+		params: {
+			language?: Types.Language;
+		}
+	) =>
+		this.request<Types.TvSeasonCredits["credits"]>(
+			`/tv/${tv_id}/season/${season_number}/credits`,
+			params
+		);
+
+	public tvSeasonExternalIds = (
+		tv_id: number,
+		season_number: number,
+		params: {
+			language?: Types.Language;
+		}
+	) =>
+		this.request<Types.TvSeasonExternalIds["external_ids"]>(
+			`/tv/${tv_id}/season/${season_number}/external_ids`,
+			params
+		);
+
+	public tvSeasonImages = (
+		tv_id: number,
+		season_number: number,
+		params: {
+			language?: Types.Language;
+		}
+	) =>
+		this.request<Types.TvSeasonImages["images"]>(
+			`/tv/${tv_id}/season/${season_number}/images`,
+			params
+		);
+
+	public tvSeasonTranslations = (
+		tv_id: number,
+		season_number: number,
+		params: {
+			language?: Types.Language;
+		}
+	) =>
+		this.request<Types.TvSeasonTranslations["translations"]>(
+			`/tv/${tv_id}/season/${season_number}/translations`,
+			params
+		);
+
+	public tvSeasonVideos = (
+		tv_id: number,
+		season_number: number,
+		params: {
+			language?: Types.Language;
+		}
+	) =>
+		this.request<Types.TvSeasonVideos["videos"]>(
+			`/tv/${tv_id}/season/${season_number}/videos`,
+			params
+		);
+
 	private async request<responseType>(endpoint: string, params?: Types.RequestParams) {
 		let headers: { Accept: string; Authorization?: string } = { Accept: "application/json" };
 		let append_to_response: string | undefined;
