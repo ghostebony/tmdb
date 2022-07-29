@@ -708,7 +708,7 @@ export type PersonImages = {
 			file_path: string;
 			height: number;
 			iso_639_1: null; // FIXME
-			vote_average: number | number;
+			vote_average: number;
 			vote_count: number;
 			width: number;
 		}[];
@@ -1046,7 +1046,7 @@ export type TvImages = {
 			aspect_ratio: number;
 			file_path: string;
 			height: number;
-			iso_639_1: null | string;
+			iso_639_1: string | null;
 			vote_average: number;
 			vote_count: number;
 			width: number;
@@ -1202,7 +1202,7 @@ export type TvLatest = {
 	origin_country: string[];
 	original_language: string;
 	original_name: string;
-	overview: null | string;
+	overview: string | null;
 	popularity: number;
 	poster_path: string | null;
 	production_companies: object[];
