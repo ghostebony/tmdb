@@ -2,9 +2,6 @@
 	"name": "@ghostebony/tmdb",
 	"version": "0.0.1",
 	"main": "dist/index.js",
-	"files": [
-		"dist"
-	],
 	"author": "Pedro Américo",
 	"license": "MIT",
 	"repository": "github:ghostebony/tmdb",
