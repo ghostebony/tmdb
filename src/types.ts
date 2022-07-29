@@ -427,6 +427,262 @@ export type MovieUpcoming = Search<MediaMovie> & {
 	};
 };
 
+/* --------------------------------- Person -------------------------------- */
+
+export type Person = {
+	birthday: string | null;
+	known_for_department: string;
+	deathday: string | null;
+	id: number;
+	name: string;
+	also_known_as: string[];
+	gender: 0 | 1 | 2 | 3;
+	biography: string;
+	popularity: number;
+	place_of_birth: string | null;
+	profile_path: string | null;
+	adult: boolean;
+	imdb_id: string;
+	homepage: string | null;
+};
+
+export type PersonChanges = {
+	changes: {
+		changes: {
+			key: string;
+			items: {
+				id: string;
+				action: string;
+				time: string;
+				original_value: { profile: { file_path: string } };
+			}[];
+		}[];
+	};
+};
+
+export type PersonMovieCredits = {
+	movie_credits: {
+		cast: {
+			character: string;
+			credit_id: string;
+			release_date: string;
+			vote_count: number;
+			video: boolean;
+			adult: boolean;
+			vote_average: number;
+			title: string;
+			genre_ids: number[];
+			original_language: string;
+			original_title: string;
+			popularity: number;
+			id: number;
+			backdrop_path: string | null;
+			overview: string;
+			poster_path: string | null;
+		}[];
+		crew: {
+			id: number;
+			department: string;
+			original_language: string;
+			original_title: string;
+			job: string;
+			overview: string;
+			vote_count: number;
+			video: boolean;
+			poster_path: string | null;
+			backdrop_path: string | null;
+			title: string;
+			popularity: number;
+			genre_ids: number[];
+			vote_average: number;
+			adult: boolean;
+			release_date: string;
+			credit_id: string;
+		}[];
+		id: number;
+	};
+};
+
+export type PersonTvCredits = {
+	tv_credits: {
+		cast: {
+			credit_id: string;
+			original_name: string;
+			id: number;
+			genre_ids: number[];
+			character: string;
+			name: string;
+			poster_path: string | null;
+			vote_count: number;
+			vote_average: number;
+			popularity: number;
+			episode_count: number;
+			original_language: string;
+			first_air_date: string;
+			backdrop_path: string | null;
+			overview: string;
+			origin_country: string[];
+		}[];
+		crew: {
+			id: number;
+			department: string;
+			original_language: string;
+			episode_count: number;
+			job: string;
+			overview: string;
+			origin_country: string[];
+			original_name: string;
+			genre_ids: number[];
+			name: string;
+			first_air_date: string;
+			backdrop_path: string | null;
+			popularity: number;
+			vote_count: number;
+			vote_average: number;
+			poster_path: string | null;
+			credit_id: string;
+		}[];
+		id: number;
+	};
+};
+
+export type PersonCombinedCredits = {
+	combined_credits: {
+		cast: {
+			id: number;
+			original_language: string;
+			episode_count: number;
+			overview: string;
+			origin_country: string[];
+			original_name: string;
+			genre_ids: number[];
+			name: string;
+			media_type: string;
+			poster_path: string | null;
+			first_air_date: string;
+			vote_average: number;
+			vote_count: number;
+			character: string;
+			backdrop_path: string | null;
+			popularity: number;
+			credit_id: string;
+			original_title: string;
+			video: boolean;
+			release_date: string;
+			title: string;
+			adult: boolean;
+		}[];
+		crew: {
+			id: number;
+			department: string;
+			original_language: string;
+			episode_count: number;
+			job: string;
+			overview: string;
+			origin_country: string[];
+			original_name: string;
+			vote_count: number;
+			name: string;
+			media_type: string;
+			popularity: number;
+			credit_id: string;
+			backdrop_path: string | null;
+			first_air_date: string;
+			vote_average: number;
+			genre_ids: number[];
+			poster_path: string | null;
+			original_title: string;
+			video: boolean;
+			title: string;
+			adult: boolean;
+			release_date: string;
+		}[];
+		id: number;
+	};
+};
+
+export type PersonExternalIds = {
+	external_ids: {
+		imdb_id: string | null;
+		facebook_id: string | null;
+		freebase_mid: string | null;
+		freebase_id: string | null;
+		tvrage_id: number | null;
+		twitter_id: string | null;
+		id: number;
+		instagram_id: string | null;
+	};
+};
+
+export type PersonImages = {
+	images: {
+		id: number;
+		profiles: {
+			aspect_ratio: number;
+			file_path: string;
+			height: number;
+			iso_639_1: null; // FIXME
+			vote_average: number | number;
+			vote_count: number;
+			width: number;
+		}[];
+	};
+};
+
+export type PersonTaggedImages = {
+	tagged_images: Search<{
+		aspect_ratio: number;
+		file_path: string;
+		height: number;
+		id: string;
+		iso_639_1: string | null;
+		vote_average: number;
+		vote_count: number;
+		width: number;
+		image_type: string;
+		media: MediaMovie | MediaTv;
+		media_type: string;
+	}> & { id: number };
+};
+
+export type PersonTranslations = {
+	translations: {
+		translations: {
+			iso_639_1: string;
+			iso_3166_1: string;
+			name: string;
+			data: { biography: string };
+			english_name: string;
+		}[];
+		id: number;
+	};
+};
+
+export type PersonLatest = {
+	adult: boolean;
+	also_known_as: object[];
+	biography: string | null;
+	birthday: string | null;
+	deathday: string | null;
+	gender: number;
+	homepage: string | null;
+	id: number;
+	imdb_id: string | null;
+	name: string;
+	place_of_birth: string | null;
+	popularity: number;
+	profile_path: string | null;
+};
+
+export type PersonPopular = Search<{
+	profile_path: string;
+	adult: boolean;
+	id: number;
+	known_for: KnownForMovie | KnownForTv;
+	name: string;
+	popularity: number;
+}>;
+
 /* --------------------------------- Search -------------------------------- */
 
 export type Search<Result> = {

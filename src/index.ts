@@ -230,6 +230,107 @@ export default class TMDb {
 		region?: Types.Region;
 	}) => this.request<Types.MovieUpcoming>("/movie/upcoming", params);
 
+	public person = <
+		ATR extends {
+			changes: Types.PersonChanges;
+			movie_credits: Types.PersonMovieCredits;
+			tv_credits: Types.PersonTvCredits;
+			combined_credits: Types.PersonCombinedCredits;
+			external_ids: Types.PersonExternalIds;
+			images: Types.PersonImages;
+			tagged_images: Types.PersonTaggedImages;
+			translations: Types.PersonTranslations;
+		},
+		Key extends keyof ATR
+	>(
+		person_id: number,
+		params?: {
+			language?: Types.Language;
+			append_to_response?: Key[];
+		}
+	) =>
+		this.request<Types.Person & UnionToIntersection<ATR[Key]>>(
+			`/person/${person_id}`,
+			params as Types.RequestParams
+		);
+
+	public personChanges = (
+		person_id: number,
+		params?: {
+			page?: number;
+			start_date?: string;
+			end_date?: string;
+		}
+	) => this.request<Types.PersonChanges["changes"]>(`/person/${person_id}/changes`, params);
+
+	public personMovieCredits = (
+		person_id: number,
+		params?: {
+			language?: Types.Language;
+		}
+	) =>
+		this.request<Types.PersonMovieCredits["movie_credits"]>(
+			`/person/${person_id}/movie_credits`,
+			params
+		);
+
+	public personTvCredits = (
+		person_id: number,
+		params?: {
+			language?: Types.Language;
+		}
+	) =>
+		this.request<Types.PersonTvCredits["tv_credits"]>(
+			`/person/${person_id}/tv_credits`,
+			params
+		);
+
+	public personCombinedCredits = (
+		person_id: number,
+		params?: {
+			language?: Types.Language;
+		}
+	) =>
+		this.request<Types.PersonCombinedCredits["combined_credits"]>(
+			`/person/${person_id}/combined_credits`,
+			params
+		);
+
+	public personExternalIds = (person_id: number) =>
+		this.request<Types.PersonExternalIds["external_ids"]>(`/person/${person_id}/external_ids`);
+
+	public personImages = (person_id: number) =>
+		this.request<Types.PersonImages["images"]>(`/person/${person_id}/images`);
+
+	public personTaggedImages = (
+		person_id: number,
+		params?: {
+			language?: Types.Language;
+			page?: number;
+		}
+	) =>
+		this.request<Types.PersonTaggedImages["tagged_images"]>(
+			`/person/${person_id}/tagged_images`,
+			params
+		);
+
+	public personTranslations = (
+		person_id: number,
+		params?: {
+			language?: Types.Language;
+		}
+	) =>
+		this.request<Types.PersonTranslations["translations"]>(
+			`/person/${person_id}/translations`,
+			params
+		);
+
+	public personLatest = (params?: { language?: Types.Language }) =>
+		this.request<Types.PersonLatest>(`/person/latest`, params);
+
+	public personPopular = (params?: { language?: Types.Language; page?: number }) =>
+		this.request<Types.PersonPopular>(`/person/popular`, params);
+
 	public searchCompany = (
 		query: string,
 		params?: {
