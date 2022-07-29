@@ -395,6 +395,187 @@ export default class TMDb {
 		}
 	) => this.request<Types.SearchTv>("/search/tv", { query, ...params });
 
+	public tv = <
+		ATR extends {
+			account_states: Types.TvAccountStates;
+			aggregate_credits: Types.TvAggregateCredits;
+			alternative_titles: Types.TvAlternativeTitles;
+			changes: Types.TvChanges;
+			content_ratings: Types.TvContentRatings;
+			credits: Types.TvCredits;
+			episode_groups: Types.TvEpisodeGroups;
+			external_ids: Types.TvExternalIds;
+			images: Types.TvImages;
+			keywords: Types.TvKeywords;
+			recommendations: Types.TvRecommendations;
+			reviews: Types.TvReviews;
+			screened_theatrically: Types.TvScreenedTheatrically;
+			similar: Types.TvSimilar;
+			translations: Types.TvTranslations;
+			videos: Types.TvVideos;
+			"watch/providers": Types.TvWatchProviders;
+			[season: `season/${number}`]: Types.TvTvSeason;
+		},
+		Key extends keyof ATR
+	>(
+		tv_id: number,
+		params?: {
+			language?: Types.Language;
+			append_to_response?: Key[];
+		}
+	) =>
+		this.request<Types.Tv & UnionToIntersection<ATR[Key]>>(
+			`/tv/${tv_id}`,
+			params as Types.RequestParams
+		);
+
+	public tvAccountStates = (
+		tv_id: number,
+		params: {
+			language?: Types.Language;
+			guest_session_id?: string;
+			session_id?: string;
+		}
+	) =>
+		this.request<Types.TvAccountStates["account_states"]>(
+			`/tv/${tv_id}/account_states`,
+			params
+		);
+
+	public tvAggregateCredits = (
+		tv_id: number,
+		params: {
+			language?: Types.Language;
+		}
+	) =>
+		this.request<Types.TvAggregateCredits["agregate_credits"]>(
+			`/tv/${tv_id}/aggregate_credits`,
+			params
+		);
+
+	public tvAlternativeTitles = (
+		tv_id: number,
+		params: {
+			language?: Types.Language;
+		}
+	) =>
+		this.request<Types.TvAlternativeTitles["alternative_titles"]>(
+			`/tv/${tv_id}/alternative_titles`,
+			params
+		);
+
+	public tvChanges = (
+		tv_id: number,
+		params?: { page?: number; start_date?: string; end_date?: string }
+	) => this.request<Types.TvChanges["changes"]>(`/tv/${tv_id}/changes`, params);
+
+	public tvContentRatings = (
+		tv_id: number,
+		params: {
+			language?: Types.Language;
+		}
+	) =>
+		this.request<Types.TvContentRatings["content_ratings"]>(
+			`/tv/${tv_id}/content_ratings`,
+			params
+		);
+
+	public tvCredits = (
+		tv_id: number,
+		params: {
+			language?: Types.Language;
+		}
+	) => this.request<Types.TvCredits["credits"]>(`/tv/${tv_id}/credits`, params);
+
+	public tvEpisodeGroups = (
+		tv_id: number,
+		params: {
+			language?: Types.Language;
+		}
+	) =>
+		this.request<Types.TvEpisodeGroups["episode_groups"]>(
+			`/tv/${tv_id}/episode_groups`,
+			params
+		);
+
+	public tvExternalIds = (
+		tv_id: number,
+		params: {
+			language?: Types.Language;
+		}
+	) => this.request<Types.TvExternalIds["external_ids"]>(`/tv/${tv_id}/external_ids`, params);
+
+	public tvImages = (
+		tv_id: number,
+		params: {
+			language?: Types.Language;
+		}
+	) => this.request<Types.TvImages["images"]>(`/tv/${tv_id}/images`, params);
+
+	public tvKeywords = (tv_id: number) =>
+		this.request<Types.TvKeywords["keywords"]>(`/tv/${tv_id}/keywords`);
+
+	public tvRecommendations = (
+		tv_id: number,
+		params: {
+			language?: Types.Language;
+			page?: number;
+		}
+	) =>
+		this.request<Types.TvRecommendations["recommendations"]>(
+			`/tv/${tv_id}/recommendations`,
+			params
+		);
+
+	public tvReviews = (
+		tv_id: number,
+		params: {
+			language?: Types.Language;
+			page?: number;
+		}
+	) => this.request<Types.TvReviews["reviews"]>(`/tv/${tv_id}/reviews`, params);
+
+	public tvScreenedTheatrically = (tv_id: number) =>
+		this.request<Types.TvScreenedTheatrically["screened_theatrically"]>(
+			`/tv/${tv_id}/screened_theatrically`
+		);
+
+	public tvSimilar = (
+		tv_id: number,
+		params: {
+			language?: Types.Language;
+			page?: number;
+		}
+	) => this.request<Types.TvSimilar["similar"]>(`/tv/${tv_id}/similar`, params);
+
+	public tvTranslations = (tv_id: number) =>
+		this.request<Types.TvTranslations["translations"]>(`/tv/${tv_id}/translations`);
+
+	public tvVideos = (
+		tv_id: number,
+		params: {
+			language?: Types.Language;
+		}
+	) => this.request<Types.TvVideos["videos"]>(`/tv/${tv_id}/videos`, params);
+
+	public tvWatchProviders = (tv_id: number) =>
+		this.request<Types.TvWatchProviders["watch_providers"]>(`/tv/${tv_id}/watch/providers`);
+
+	public tvLatest = (params: { language?: Types.Language }) =>
+		this.request<Types.TvLatest>(`/tv/latest`, params);
+
+	public tvAiringToday = (params: { language?: Types.Language; page?: number }) =>
+		this.request<Types.TvAiringToday>(`/tv/airing_today`, params);
+
+	public tvOnTheAir = (params: { language?: Types.Language; page?: number }) =>
+		this.request<Types.TvOnTheAir>(`/tv/on_the_air`, params);
+
+	public tvPopular = (params: { language?: Types.Language; page?: number }) =>
+		this.request<Types.TvPopular>(`/tv/popular`, params);
+
+	public tvTopRated = (params: { language?: Types.Language; page?: number }) =>
+		this.request<Types.TvTopRated>(`/tv/top_rated`, params);
+
 	private async request<responseType>(endpoint: string, params?: Types.RequestParams) {
 		let headers: { Accept: string; Authorization?: string } = { Accept: "application/json" };
 		let append_to_response: string | undefined;

@@ -74,6 +74,92 @@ export type KnownForPerson = MediaPerson & { media_type: "person" };
 
 export type KnownForTv = MediaTv & { media_type: "tv" };
 
+export type WatchProvidersCountryMovie =
+	| "AR"
+	| "AT"
+	| "AU"
+	| "BE"
+	| "BR"
+	| "CA"
+	| "CH"
+	| "CL"
+	| "CO"
+	| "CZ"
+	| "DE"
+	| "DK"
+	| "EC"
+	| "EE"
+	| "ES"
+	| "FI"
+	| "FR"
+	| "GB"
+	| "GR"
+	| "HU"
+	| "ID"
+	| "IE"
+	| "IN"
+	| "IT"
+	| "JP"
+	| "KR"
+	| "LT"
+	| "LV"
+	| "MX"
+	| "MY"
+	| "NL"
+	| "NO"
+	| "NZ"
+	| "PE"
+	| "PH"
+	| "PL"
+	| "PT"
+	| "RO"
+	| "RU"
+	| "SE"
+	| "SG"
+	| "TH"
+	| "TR"
+	| "US"
+	| "VE"
+	| "ZA";
+
+export type WatchProvidersCountryTv =
+	| "AR"
+	| "AT"
+	| "AU"
+	| "BE"
+	| "BR"
+	| "CA"
+	| "CH"
+	| "CL"
+	| "CO"
+	| "CZ"
+	| "DE"
+	| "DK"
+	| "EC"
+	| "ES"
+	| "FI"
+	| "FR"
+	| "GB"
+	| "HU"
+	| "IE"
+	| "IN"
+	| "IT"
+	| "JP"
+	| "MX"
+	| "NL"
+	| "NO"
+	| "NZ"
+	| "PE"
+	| "PL"
+	| "PT"
+	| "RO"
+	| "RU"
+	| "SE"
+	| "TR"
+	| "US"
+	| "VE"
+	| "ZA";
+
 /* ---------------------------------- Find --------------------------------- */
 
 export type Find = {
@@ -338,7 +424,7 @@ export type MovieWatchProviders = {
 	watch_providers: {
 		id: number;
 		results: {
-			[key: string]: {
+			[country in WatchProvidersCountryMovie]: {
 				link: string;
 				flatrate: {
 					display_priority: number;
@@ -731,3 +817,412 @@ export type SearchPerson = Search<{
 }>;
 
 export type SearchTv = Search<MediaTv>;
+
+/* ----------------------------------- Tv ---------------------------------- */
+
+export type Tv = {
+	backdrop_path: string | null;
+	created_by: {
+		id: number;
+		credit_id: string;
+		name: string;
+		gender: number;
+		profile_path: string | null;
+	}[];
+	episode_run_time: number[];
+	first_air_date: string;
+	genres: { id: number; name: string }[];
+	homepage: string;
+	id: number;
+	in_production: boolean;
+	languages: string[];
+	last_air_date: string;
+	last_episode_to_air: {
+		air_date: string;
+		episode_number: number;
+		id: number;
+		name: string;
+		overview: string;
+		production_code: string;
+		season_number: number;
+		still_path: string | null;
+		vote_average: number;
+		vote_count: number;
+	};
+	name: string;
+	next_episode_to_air: object | null;
+	networks: {
+		name: string;
+		id: number;
+		logo_path: string | null;
+		origin_country: string;
+	}[];
+	number_of_episodes: number;
+	number_of_seasons: number;
+	origin_country: string[];
+	original_language: string;
+	original_name: string;
+	overview: string;
+	popularity: number;
+	poster_path: string | null;
+	production_companies: {
+		id: number;
+		logo_path: string | null;
+		name: string;
+		origin_country: string;
+	}[];
+	production_countries: {
+		iso_3166_1: string;
+		name: string;
+	}[];
+	seasons: {
+		air_date: string;
+		episode_count: number;
+		id: number;
+		name: string;
+		overview: string;
+		poster_path: string;
+		season_number: number;
+	}[];
+	spoken_languages: {
+		english_name: string;
+		iso_639_1: string;
+		name: string;
+	}[];
+	status: string;
+	tagline: string;
+	type: string;
+	vote_average: number;
+	vote_count: number;
+};
+
+export type TvAccountStates = {
+	account_states: { id: number; favorite: boolean; rated: object | boolean; watchlist: boolean };
+};
+
+export type TvAggregateCredits = {
+	agregate_credits: {
+		cast: {
+			adult: boolean;
+			gender: number | null;
+			id: number;
+			known_for_department: string;
+			name: string;
+			original_name: string;
+			popularity: number;
+			profile_path: string | null;
+			roles: {
+				credit_id: string;
+				character: string;
+				episode_count: number;
+			}[];
+			total_episode_count: number;
+			order: number;
+		};
+		crew: {
+			adult: boolean;
+			gender: number | null;
+			id: number;
+			known_for_department: string;
+			name: string;
+			original_name: string;
+			popularity: number;
+			profile_path: string | null;
+			jobs: {
+				credit_id: string;
+				job: string;
+				episode_count: number;
+			}[];
+			department: string;
+			total_episode_count: number;
+		};
+		id: number;
+	};
+};
+
+export type TvAlternativeTitles = {
+	alternative_titles: {
+		id: number;
+		results: {
+			title: string;
+			iso_3166_1: string;
+			type: string;
+		}[];
+	};
+};
+
+export type TvChanges = {
+	changes: {
+		changes: {
+			key: string;
+			items: {
+				id: string;
+				action: string;
+				time: string;
+			}[];
+		}[];
+	};
+};
+
+export type TvContentRatings = {
+	content_ratings: {
+		results: {
+			iso_3166_1: string;
+			rating: string;
+		}[];
+		id: number;
+	};
+};
+
+export type TvCredits = {
+	credits: {
+		cast: {
+			adult: boolean;
+			gender: number | null;
+			id: number;
+			known_for_department: string;
+			name: string;
+			original_name: string;
+			popularity: number;
+			profile_path: string | null;
+			character: string;
+			credit_id: string;
+			order: number;
+		};
+		crew: {
+			adult: boolean;
+			gender: number | null;
+			id: number;
+			known_for_department: string;
+			name: string;
+			original_name: string;
+			popularity: number;
+			profile_path: string | null;
+			credit_id: string;
+			department: string;
+			job: string;
+		};
+		id: number;
+	};
+};
+
+export type TvEpisodeGroups = {
+	episode_groups: {
+		results: {
+			description: string;
+			episode_count: number;
+			group_count: number;
+			id: string;
+			name: string;
+			network: {
+				id: number;
+				logo_path: string;
+				name: string;
+				origin_country: string;
+			}[];
+			type: number;
+		}[];
+		id: number;
+	};
+};
+
+export type TvExternalIds = {
+	external_ids: {
+		imdb_id: string | null;
+		freebase_mid: string | null;
+		freebase_id: string | null;
+		tvdb_id: number | null;
+		tvrage_id: number | null;
+		facebook_id: string | null;
+		instagram_id: string | null;
+		twitter_id: string | null;
+		id: number;
+	};
+};
+
+export type TvImages = {
+	images: {
+		backdrops: {
+			aspect_ratio: number;
+			file_path: string;
+			height: number;
+			iso_639_1: null | string;
+			vote_average: number;
+			vote_count: number;
+			width: number;
+		}[];
+		id: number;
+		posters: {
+			aspect_ratio: number;
+			file_path: string;
+			height: number;
+			iso_639_1: string | null;
+			vote_average: number;
+			vote_count: number;
+			width: number;
+		}[];
+	};
+};
+
+export type TvKeywords = {
+	keywords: {
+		id: number;
+		results: {
+			id: number;
+			name: string;
+		}[];
+	};
+};
+
+export type TvRecommendations = {
+	recommendations: Search<MediaTv>;
+};
+
+export type TvReviews = {
+	reviews: Search<{
+		author: string;
+		author_details: {
+			name: string;
+			username: string;
+			avatar_path: string | null;
+			rating: number;
+		}[];
+		content: string;
+		created_at: string;
+		id: string;
+		updated_at: string;
+		url: string;
+	}> & { id: number };
+};
+
+export type TvScreenedTheatrically = {
+	screened_theatrically: {
+		id: number;
+		results: {
+			id: number;
+			episode_number: number;
+			season_number: number;
+		}[];
+	};
+};
+
+export type TvSimilar = {
+	similar: Search<MediaTv>;
+};
+
+export type TvTranslations = {
+	translations: {
+		id: number;
+		translations: {
+			iso_3166_1: string;
+			iso_639_1: string;
+			name: string;
+			english_name: string;
+			data: {
+				name: string;
+				overview: string;
+				homepage: string;
+			};
+		}[];
+	};
+};
+
+export type TvVideos = {
+	videos: {
+		id: number;
+		results: {
+			iso_639_1: string;
+			iso_3166_1: string;
+			name: string;
+			key: string;
+			site: string;
+			size: number;
+			type: string;
+			official: boolean;
+			published_at: string;
+			id: string;
+		}[];
+	};
+};
+
+export type TvWatchProviders = {
+	watch_providers: {
+		id: number;
+		results: {
+			[country in WatchProvidersCountryTv]: {
+				link: string;
+				flatrate: {
+					display_priority: number;
+					logo_path: string;
+					provider_id: number;
+					provider_name: string;
+				}[];
+				rent: {
+					display_priority: number;
+					logo_path: string;
+					provider_id: number;
+					provider_name: string;
+				}[];
+				buy: {
+					display_priority: number;
+					logo_path: string;
+					provider_id: number;
+					provider_name: string;
+				}[];
+			};
+		}[];
+	};
+};
+
+export type TvTvSeason = {
+	[season: `season/${number}`]: TvSeason;
+};
+
+export type TvLatest = {
+	backdrop_path: string | null;
+	created_by: object[];
+	episode_run_time: number[];
+	first_air_date: string;
+	genres: {
+		id: number;
+		name: string;
+	}[];
+	homepage: string;
+	id: number;
+	in_production: boolean;
+	languages: string[];
+	last_air_date: string;
+	name: string;
+	networks: {
+		id: number;
+		name: string;
+	}[];
+	number_of_episodes: number;
+	number_of_seasons: number;
+	origin_country: string[];
+	original_language: string;
+	original_name: string;
+	overview: null | string;
+	popularity: number;
+	poster_path: string | null;
+	production_companies: object[];
+	seasons: {
+		air_date: string;
+		episode_count: number;
+		id: number;
+		poster_path: string | null;
+		season_number: number;
+	}[];
+	status: string;
+	type: string;
+	vote_average: number;
+	vote_count: number;
+};
+
+export type TvAiringToday = Search<MediaTv>;
+
+export type TvOnTheAir = Search<MediaTv>;
+
+export type TvPopular = Search<MediaTv>;
+
+export type TvTopRated = Search<MediaTv>;
