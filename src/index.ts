@@ -798,7 +798,7 @@ export default class TMDb {
 			params
 		);
 
-	private async request<responseType>(endpoint: string, params?: Types.RequestParams) {
+	private async request<dataType>(endpoint: string, params?: Types.RequestParams) {
 		let headers: { Accept: string; Authorization?: string } = { Accept: "application/json" };
 		let append_to_response: string | undefined;
 
@@ -830,11 +830,11 @@ export default class TMDb {
 
 		const responseBody = await response.json();
 
-		let data: responseType | undefined;
+		let data: dataType | undefined;
 		let error: Types.Error | undefined;
 
 		if (response.ok) {
-			data = responseBody as responseType;
+			data = responseBody as dataType;
 		} else {
 			error = responseBody as Types.Error;
 		}
