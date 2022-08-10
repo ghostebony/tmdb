@@ -1,10 +1,9 @@
+import { http } from "@ghostebony/utils";
 import type * as Types from "./types";
 
 type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void
 	? I
 	: never;
-
-type Params = { [key: string]: any };
 
 export default class TMDb {
 	private apiKey?: string;
@@ -798,8 +797,8 @@ export default class TMDb {
 			params
 		);
 
-	private async request<dataType>(endpoint: string, params?: Types.RequestParams) {
-		let headers: { Accept: string; Authorization?: string } = { Accept: "application/json" };
+	private async request<Data>(endpoint: string, params?: Types.RequestParams) {
+		let headers: { accept: string; authorization?: string } = { accept: "application/json" };
 		let append_to_response: string | undefined;
 
 		if (!params) params = {};
@@ -817,45 +816,12 @@ export default class TMDb {
 		if (this.apiKey) {
 			params["api_key"] = this.apiKey;
 		} else {
-			headers["Authorization"] = `Bearer ${this.bearerToken}`;
+			headers["authorization"] = `Bearer ${this.bearerToken}`;
 		}
 
-		const response = await fetch(
-			this.buildEndpoint(endpoint, { ...params, append_to_response }),
-			{
-				method: "GET",
-				headers,
-			}
-		);
-
-		const responseBody = await response.json();
-
-		let data: dataType | undefined;
-		let error: Types.Error | undefined;
-
-		if (response.ok) {
-			data = responseBody as dataType;
-		} else {
-			error = responseBody as Types.Error;
-		}
-
-		return {
-			data,
-			error,
-			ok: response.ok,
-		};
+		return http.get<Data, Types.Error>(this.baseUrl + endpoint, {
+			headers,
+			params: { ...params, append_to_response },
+		});
 	}
-
-	private buildEndpoint = (endpoint: string, params: Params) =>
-		`${this.baseUrl}${endpoint}?${new URLSearchParams(
-			this.filterUrlParams(params)
-		).toString()}`;
-
-	private filterUrlParams = (params: Params) =>
-		Object.keys(params).reduce((prms: Params, key) => {
-			if (params[key] !== undefined) {
-				prms[key] = params[key];
-			}
-			return prms;
-		}, {});
 }
