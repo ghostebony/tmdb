@@ -2,9 +2,15 @@
 	"name": "@ghostebony/tmdb",
 	"version": "0.0.3",
 	"main": "index.js",
+	"type": "module",
 	"author": "Pedro Américo",
 	"license": "MIT",
 	"repository": "github:ghostebony/tmdb",
+	"keywords": [
+		"themoviedb",
+		"tmdb",
+		"api"
+	],
 	"scripts": {
 		"preinstall": "npx only-allow pnpm",
 		"build": "tsc --build",
@@ -18,11 +24,5 @@
 	"devDependencies": {
 		"prettier": "^2.7.1",
 		"typescript": "^4.7.4"
-	},
-	"keywords": [
-		"themoviedb",
-		"tmdb",
-		"api"
-	],
-	"type": "module"
+	}
 }
