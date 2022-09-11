@@ -19,7 +19,7 @@
 		"build:clean": "pnpm run clean && pnpm run build"
 	},
 	"dependencies": {
-		"@ghostebony/utils": "0.0.3"
+		"@ghostebony/utils": "0.0.6"
 	},
 	"devDependencies": {
 		"prettier": "^2.7.1",
