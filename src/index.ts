@@ -48,6 +48,9 @@ export default class TMDb {
 		}
 	}
 
+	public account = (params: { session_id: string }) =>
+		this.request<Types.Account>(`/account`, params);
+
 	public find = (
 		external_id: string,
 		params: {
