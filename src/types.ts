@@ -179,6 +179,12 @@ export type Account = {
 	username: string;
 };
 
+export type AuthenticationGuestSessionNew = {
+	success: boolean;
+	guest_session_id: string;
+	expires_at: string;
+};
+
 export type Find = {
 	movie_results: MediaMovie[];
 	person_results: MediaPerson[];
