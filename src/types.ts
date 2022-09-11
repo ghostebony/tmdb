@@ -207,6 +207,10 @@ export type AuthenticationSessionConvert4 = {
 	session_id: string;
 };
 
+export type AuthenticationSession = {
+	success: boolean;
+};
+
 export type Find = {
 	movie_results: MediaMovie[];
 	person_results: MediaPerson[];

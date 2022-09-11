@@ -73,6 +73,9 @@ export default class TMDb {
 	public authenticationSessionConvert4 = (body: { access_token: string }) =>
 		this.post<Types.AuthenticationSessionConvert4>("/authentication/session/convert/4", body);
 
+	public authenticationSession = (body: { session_id: string }) =>
+		this.delete<Types.AuthenticationSession>("/authentication/session", body);
+
 	public find = (
 		external_id: string,
 		params: {
