@@ -807,6 +807,9 @@ export default class TMDb {
 			params
 		);
 
+	private delete = <Data>(endpoint: string, body: Record<string, any>) =>
+		this.request<Data>("DELETE", endpoint, { body });
+
 	private get = <Data>(endpoint: string, params?: Types.RequestParams) =>
 		this.request<Data>("GET", endpoint, { params });
 
