@@ -191,6 +191,11 @@ export type AuthenticationTokenNew = {
 	request_token: string;
 };
 
+export type AuthenticationSessionNew = {
+	success: boolean;
+	session_id: string;
+};
+
 export type Find = {
 	movie_results: MediaMovie[];
 	person_results: MediaPerson[];

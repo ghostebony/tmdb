@@ -57,6 +57,9 @@ export default class TMDb {
 	public authenticationTokenNew = () =>
 		this.get<Types.AuthenticationTokenNew>(`/authentication/token/new`);
 
+	public authenticationSessionNew = (body: { request_token: string }) =>
+		this.post<Types.AuthenticationSessionNew>(`/authentication/session/new`, body);
+
 	public find = (
 		external_id: string,
 		params: {
