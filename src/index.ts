@@ -60,6 +60,16 @@ export default class TMDb {
 	public authenticationSessionNew = (body: { request_token: string }) =>
 		this.post<Types.AuthenticationSessionNew>(`/authentication/session/new`, body);
 
+	public authenticationTokenValidateWithLogin = (body: {
+		username: string;
+		password: string;
+		request_token: string;
+	}) =>
+		this.post<Types.AuthenticationTokenValidateWithLogin>(
+			"/authentication/token/validate_with_login",
+			body
+		);
+
 	public find = (
 		external_id: string,
 		params: {

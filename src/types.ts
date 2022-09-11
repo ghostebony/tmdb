@@ -196,6 +196,12 @@ export type AuthenticationSessionNew = {
 	session_id: string;
 };
 
+export type AuthenticationTokenValidateWithLogin = {
+	success: boolean;
+	expires_at: string;
+	request_token: string;
+};
+
 export type Find = {
 	movie_results: MediaMovie[];
 	person_results: MediaPerson[];
