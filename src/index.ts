@@ -794,6 +794,9 @@ export default class TMDb {
 	private get = <Data>(endpoint: string, params?: Types.RequestParams) =>
 		this.request<Data>("GET", endpoint, { params });
 
+	private post = <Data>(endpoint: string, body: Record<string, any>) =>
+		this.request<Data>("POST", endpoint, { body });
+
 	private request<Data>(
 		method: Exclude<keyof typeof http, "statusCode" | "custom" | "CUSTOM">,
 		endpoint: string,
