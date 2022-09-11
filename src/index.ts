@@ -54,6 +54,9 @@ export default class TMDb {
 	public authenticationGuestSessionNew = () =>
 		this.request<Types.AuthenticationGuestSessionNew>(`/authentication/guest_session/new`);
 
+	public authenticationTokenNew = () =>
+		this.request<Types.AuthenticationTokenNew>(`/authentication/token/new`);
+
 	public find = (
 		external_id: string,
 		params: {

@@ -185,6 +185,12 @@ export type AuthenticationGuestSessionNew = {
 	expires_at: string;
 };
 
+export type AuthenticationTokenNew = {
+	success: boolean;
+	expires_at: string;
+	request_token: string;
+};
+
 export type Find = {
 	movie_results: MediaMovie[];
 	person_results: MediaPerson[];
