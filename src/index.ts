@@ -70,6 +70,9 @@ export default class TMDb {
 			body
 		);
 
+	public authenticationSessionConvert4 = (body: { access_token: string }) =>
+		this.post<Types.AuthenticationSessionConvert4>("/authentication/session/convert/4", body);
+
 	public find = (
 		external_id: string,
 		params: {
