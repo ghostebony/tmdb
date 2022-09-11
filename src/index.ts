@@ -797,7 +797,7 @@ export default class TMDb {
 			params
 		);
 
-	private async request<Data>(endpoint: string, params?: Types.RequestParams) {
+	private request<Data>(endpoint: string, params?: Types.RequestParams) {
 		let headers: { accept: string; authorization?: string } = { accept: "application/json" };
 		let append_to_response: string | undefined;
 
