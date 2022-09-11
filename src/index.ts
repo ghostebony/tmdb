@@ -432,8 +432,8 @@ export default class TMDb {
 		tv_id: number,
 		params: {
 			language?: Types.Language;
-			guest_session_id?: string;
 			session_id?: string;
+			guest_session_id?: string;
 		}
 	) =>
 		this.request<Types.TvAccountStates["account_states"]>(
@@ -606,8 +606,8 @@ export default class TMDb {
 		season_number: number,
 		params: {
 			language?: Types.Language;
-			guest_session_id?: string;
 			session_id?: string;
+			guest_session_id?: string;
 		}
 	) =>
 		this.request<Types.TvSeasonAccountStates["account_states"]>(
@@ -726,8 +726,8 @@ export default class TMDb {
 		season_number: number,
 		episode_number: number,
 		params?: {
-			guest_session_id?: string;
 			session_id?: string;
+			guest_session_id?: string;
 		}
 	) =>
 		this.request<Types.TvSeasonEpisodeAccountStates["account_states"]>(
