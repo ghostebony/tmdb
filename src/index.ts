@@ -198,7 +198,9 @@ export default class TMDb {
 		);
 
 	public movieReleaseDates = (movie_id: number) =>
-		this.get<Types.MovieReleaseDates["release_dates"]>(`/movie/${movie_id}/release_dates`);
+		this.get<Types.MovieReleaseDates["release_dates"] & { id: number }>(
+			`/movie/${movie_id}/release_dates`
+		);
 
 	public movieReleases = (movie_id: number) =>
 		this.get<Types.MovieReleases["releases"] & { id: number }>(`/movie/${movie_id}/releases`);

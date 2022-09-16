@@ -399,7 +399,6 @@ export type MovieRecommendations = {
 
 export type MovieReleaseDates = {
 	release_dates: {
-		id: number;
 		results: {
 			iso_3166_1: string;
 			release_dates: {
