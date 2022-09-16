@@ -456,6 +456,8 @@ export type MovieTranslations = {
 				title: string;
 				overview: string;
 				homepage: string;
+				tagline?: string;
+				runtime?: number;
 			};
 		}[];
 	};
@@ -796,8 +798,8 @@ export type PersonTranslations = {
 			iso_639_1: string;
 			iso_3166_1: string;
 			name: string;
-			data: { biography: string };
 			english_name: string;
+			data: { biography: string };
 		}[];
 		id: number;
 	};
@@ -1181,6 +1183,7 @@ export type TvTranslations = {
 				name: string;
 				overview: string;
 				homepage: string;
+				tagline?: string;
 			};
 		}[];
 	};
