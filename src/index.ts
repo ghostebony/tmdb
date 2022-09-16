@@ -104,6 +104,7 @@ export default class TMDb {
 			lists: Types.MovieLists;
 			recommendations: Types.MovieRecommendations;
 			release_dates: Types.MovieReleaseDates;
+			releases: Types.MovieReleases;
 			reviews: Types.MovieReviews;
 			similar: Types.MovieSimilar;
 			translations: Types.MovieTranslations;
@@ -198,6 +199,9 @@ export default class TMDb {
 
 	public movieReleaseDates = (movie_id: number) =>
 		this.get<Types.MovieReleaseDates["release_dates"]>(`/movie/${movie_id}/release_dates`);
+
+	public movieReleases = (movie_id: number) =>
+		this.get<Types.MovieReleases["releases"] & { id: number }>(`/movie/${movie_id}/releases`);
 
 	public movieReviews = (
 		movie_id: number,

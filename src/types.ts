@@ -413,6 +413,17 @@ export type MovieReleaseDates = {
 	};
 };
 
+export type MovieReleases = {
+	releases: {
+		countries: {
+			certification: string;
+			iso_3166_1: string;
+			primary: boolean;
+			release_date: string;
+		}[];
+	};
+};
+
 export type MovieReviews = {
 	reviews: Search<{
 		author: string;
