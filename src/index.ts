@@ -1,4 +1,4 @@
-import { http } from "@ghostebony/utils";
+import requests from "@ghostebony/requests";
 import type * as Types from "./types";
 
 type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void
@@ -826,7 +826,7 @@ export default class TMDb {
 		this.request<Data>("POST", endpoint, { body });
 
 	private request<Data>(
-		method: Exclude<keyof typeof http, "statusCode" | "custom" | "CUSTOM">,
+		method: Exclude<keyof typeof requests, "statusCode" | "STATUS_CODE" | "custom" | "CUSTOM">,
 		endpoint: string,
 		data?: { params?: Types.RequestParams; body?: Record<string, any> }
 	) {
@@ -851,7 +851,7 @@ export default class TMDb {
 			headers["authorization"] = `Bearer ${this.bearerToken}`;
 		}
 
-		return http[method]<Data, Types.Error>(this.baseUrl + endpoint, {
+		return requests[method]<Data, Types.Error>(this.baseUrl + endpoint, {
 			headers,
 			params: { ...params, append_to_response },
 			body: data?.body,

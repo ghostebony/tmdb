@@ -1,32 +1,41 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@ghostebony/utils': 0.0.6
-  prettier: ^2.7.1
-  typescript: ^4.8.3
+  '@ghostebony/requests': ^0.1.1
+  prettier: ^2.8.1
+  typescript: ^4.9.4
 
 dependencies:
-  '@ghostebony/utils': 0.0.6
+  '@ghostebony/requests': 0.1.1
 
 devDependencies:
-  prettier: 2.7.1
-  typescript: 4.8.3
+  prettier: 2.8.1
+  typescript: 4.9.4
 
 packages:
 
-  /@ghostebony/utils/0.0.6:
-    resolution: {integrity: sha512-QrowWs8dT+T9RI0HCc4oGqaqL3+pSpzyxJKgyVtUV7xftGOHlPdMNnfhb1EpjfSMI/8dknW1h9SbD1x4JTvBTA==}
+  /@ghostebony/requests/0.1.1:
+    resolution: {integrity: sha512-ID+fmPtnzzSUuCYX7lKVsoFED3GKk/oiu4WouJaHAPrJHu9+IYfd8l2sYph+GXYsGSH4tnFRT5yOT1bGk02lUw==}
+    engines: {pnpm: ^7.0.0}
+    requiresBuild: true
+    dependencies:
+      '@ghostebony/utils': 0.1.1
+    dev: false
+
+  /@ghostebony/utils/0.1.1:
+    resolution: {integrity: sha512-x0kIeqPAkP/eJZv8o02fh0i1ElEI1mCyQtbER+EyddnZHAyVlm+RNfiPYUyuADeRXpbTedfVjdwprT/ezci04g==}
+    engines: {pnpm: ^7.0.0}
     requiresBuild: true
     dev: false
 
-  /prettier/2.7.1:
-    resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
+  /prettier/2.8.1:
+    resolution: {integrity: sha512-lqGoSJBQNJidqCHE80vqZJHWHRFoNYsSpP9AjFhlhi9ODCJA541svILes/+/1GM3VaL/abZi7cpFzOpdR9UPKg==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
 
-  /typescript/4.8.3:
-    resolution: {integrity: sha512-goMHfm00nWPa8UvR/CPSvykqf6dVV8x/dp0c5mFTMTIu0u0FlGWRioyy7Nn0PGAdHxpJZnuO/ut+PpQ8UiHAig==}
+  /typescript/4.9.4:
+    resolution: {integrity: sha512-Uz+dTXYzxXXbsFpM86Wh3dKCxrQqUcVMxwU54orwlJjOpO3ao8L7j5lH+dWfTwgCwIuM9GQ2kvVotzYJMXTBZg==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
